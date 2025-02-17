@@ -1,10 +1,12 @@
 import sqlite3
-from tkinter import messagebox
 
 def delete_task(task_id):
+    """Deletes a task from the database."""
+    print(f"Attempting to delete task ID: {task_id}")  # Debugging
     conn = sqlite3.connect("tasks.db")
     cursor = conn.cursor()
-    cursor.execute("DELETE FROM tasks WHERE id=?", (task_id,))
+    
+    cursor.execute("DELETE FROM tasks WHERE id = ?", (task_id,))
     conn.commit()
     conn.close()
-    messagebox.showinfo("Success", "Task deleted successfully!")
+    print(f"Task {task_id} deleted successfully")  # Debugging
